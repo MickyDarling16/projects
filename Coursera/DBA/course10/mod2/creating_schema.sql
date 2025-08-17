@@ -1,0 +1,77 @@
+CREATE TABLE IF NOT EXISTS softcartDimDate
+(
+    dateid INTEGER NOT NULL,
+    date date NOT NULL,
+    Year INTEGER NOT NULL,
+    quarter INTEGER NOT NULL,
+    QuarterName CHARACTER VARYING(2) NOT NULL,
+    month INTEGER NOT NULL,
+    Monthname CHARACTER VARYING(11) NOT NULL,
+    Day INTEGER NOT NULL,
+    Weekday INTEGER NOT NULL,
+    WeekdayName CHARACTER VARYING(11) NOT NULL,
+    PRIMARY KEY (dateid)
+);
+
+CREATE TABLE IF NOT EXISTS softcartDimCategory
+(
+    ItemCatId INTEGER NOT NULL,
+    ItemCategory CHARACTER VARYING(255) NOT NULL,
+    PRIMARY KEY (ItemCatId)
+);
+
+CREATE TABLE IF NOT EXISTS softcartDimItem
+(
+    ItemId INTEGER NOT NULL,
+    ItemCategory CHARACTER VARYING(255) NOT NULL,
+    PRIMARY KEY (ItemId)
+);
+
+CREATE TABLE IF NOT EXISTS softcartDimCountry
+(
+    countryid INTEGER NOT NULL,
+    country CHARACTER VARYING(255) NOT NULL,
+    PRIMARY KEY (countryid)
+);
+
+CREATE TABLE IF NOT EXISTS softcartFactSales 
+(
+    OrderId INTEGER NOT NULL,
+    Price NUMERIC(10, 2) NOT NULL,
+    dateid INTEGER NOT NULL,
+    ItemCatId INTEGER NOT NULL,
+    ItemId INTEGER NOT NULL,
+    countryid INTEGER NOT NULL,
+    PRIMARY KEY (OrderId)
+);
+
+ALTER TABLE IF EXISTS softcartFactSales 
+    ADD FOREIGN KEY (ItemId)
+    REFERENCES softcartDimItem (ItemId) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS softcartFactSales 
+    ADD FOREIGN KEY (countryid)
+    REFERENCES softcartDimCountry (countryid) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS softcartFactSales 
+    ADD FOREIGN KEY (ItemCatId)
+    REFERENCES softcartDimCategory (ItemCatId) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS softcartFactSales 
+    ADD FOREIGN KEY (dateid)
+    REFERENCES softcartDimDate (dateid) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;

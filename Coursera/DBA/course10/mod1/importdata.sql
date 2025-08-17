@@ -1,0 +1,3 @@
+USE sales;
+
+SHOW TABLES;
