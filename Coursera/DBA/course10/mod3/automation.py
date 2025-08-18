@@ -16,7 +16,7 @@ cursor = connection.cursor()
 dsn_hostname = "" # e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
 dsn_uid = ""
 dsn_pwd = ""      # e.g. "7dBZ3wWt9XN6$o0J"
-dsn_port = 3                # e.g. "50000" 
+dsn_port = ""                # e.g. "50000" 
 dsn_database = ""            # i.e. "BLUDB"
 dsn_driver = "" # i.e. "{IBM DB2 ODBC DRIVER}"           
 dsn_protocol = ""            # i.e. "TCPIP"
@@ -61,18 +61,17 @@ print("Last row id on production datawarehouse = ", last_row_id)
 # The function get_latest_records must return a list of all records that have a rowid greater than the last_row_id in the sales_data table in the sales database on the MySQL staging data warehouse.
 
 def get_latest_records(rowid):
-	SQL = f"""
+	SQL = """
 		SELECT
 			*
 		FROM sales_data
-		WHERE rowid > {rowid}
+		WHERE rowid > %s
 	"""
-
-	cursor.execute(SQL)
-	records = []
-	for row in cursor.fetchall():
-		records.append(row)
-	return records
+	cursor.execute(SQL, (rowid,))
+	records = cursor.fetchall()
+	if records:
+		print(records[-1])
+		return records
 
 	
 
