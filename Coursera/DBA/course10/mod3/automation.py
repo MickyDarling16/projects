@@ -84,7 +84,7 @@ print("New rows on staging datawarehouse = ", len(new_records))
 
 def insert_records(records):
 	SQL = """
-		INSERT INTO sales_data(rowid,product_id,customer_id,quantity) VALUES(?,?,?,?,?,?)
+		INSERT INTO sales_data(rowid,product_id,customer_id,quantity) VALUES(?,?,?,?)
 	"""
 	stmt = ibm_db.prepare(conn, SQL)
 	for record in records:

@@ -53,7 +53,7 @@ find $BACKUP_DIR -name backup_sales_*.gz -mtime +$RETENTION_DAYS -delete
 
 
 
-* * * * * /home/project/backup_automation.sh
+*/3 * * * * /home/project/backup_automation.sh
 # Start the cron service
 if systemctl is-active cron >/dev/null 2>&1; then
     echo Cron service is already running
