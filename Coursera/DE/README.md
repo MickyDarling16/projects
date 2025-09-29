@@ -10,6 +10,9 @@ This repository contains coursework, projects, and resources for the IBM Data En
 - **course7**: Database backup, user/role management, and storage engine exploration.
 - **course8**: Log processing scripts and Kafka producer/consumer/admin code.
 - **course9**: Data warehousing, dimensional modeling, and SQL practice.
+- **course10**: BI Dashboards with IBM Cognos Analytics and Google Looker
+- **course11**: Introduction to NoSQL Databases
+- **course12**: Introduction to Big Data with Spark and Hadoop
 
 
 ## Requirements
