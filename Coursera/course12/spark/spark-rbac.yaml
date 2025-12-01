@@ -1,0 +1,26 @@
+# spark-rbac.yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: spark-submitter
+  namespace: default
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "configmaps", services]
+  verbs: ["create", "get", "watch", "delete"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: spark-submitter-binding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: default # Binds to the default ServiceAccount in the default namespace
+  namespace: default
+roleRef:
+  kind: Role
+  name: spark-submitter
+  apiGroup: rbac.authorization.k8s.io
