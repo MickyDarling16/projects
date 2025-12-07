@@ -8,3 +8,7 @@ spark-3.5.7-bin-hadoop3-scala2.13*
 # KUBERNETES
 fgskh-new_horizons
 cars.csv
+dataset*.csv
+filtered_data.parquet
+spark-warehouse
+total_value_per_year.csv
