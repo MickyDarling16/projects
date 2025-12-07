@@ -7,8 +7,7 @@ dtsciencep12
 spark-3.5.7-bin-hadoop3-scala2.13*
 # KUBERNETES
 fgskh-new_horizons
-cars.csv
-dataset*.csv
-filtered_data.parquet
+# File created
 spark-warehouse
-total_value_per_year.csv
+*.csv
+*.parquet
